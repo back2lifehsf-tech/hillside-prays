@@ -1,0 +1,28 @@
+{
+    "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+    "landingPage": "/pray/",
+    "preferredVersions": { "php": "8.2", "wp": "latest" },
+    "login": true,
+    "steps": [
+        {
+            "step": "setSiteOptions",
+            "options": {
+                "blogname": "Hillside Prays (demo)",
+                "blogdescription": "A demo with sample data - nothing here is real",
+                "permalink_structure": "/%postname%/"
+            }
+        },
+        {
+            "step": "installPlugin",
+            "pluginData": {
+                "resource": "url",
+                "url": "https://github-proxy.com/proxy/?repo=back2lifehsf-tech/hillside-prays&release=v0.3.0&asset=hillside-prays-wordpress.zip"
+            },
+            "options": { "activate": true }
+        },
+        {
+            "step": "runPHP",
+            "code": "<?php require '/wordpress/wp-load.php'; flush_rewrite_rules(); $pid = (int) get_option('hp_page_id'); if ($pid) wp_update_post(['ID' => $pid, 'post_status' => 'publish']); wp_insert_user(['user_login' => 'darlene', 'user_pass' => 'demo-prayer-2026', 'user_email' => 'darlene@example.test', 'display_name' => 'Darlene (Prayer lead)', 'role' => 'hp_care']); wp_insert_user(['user_login' => 'team1', 'user_pass' => 'demo-prayer-2026', 'user_email' => 'team1@example.test', 'display_name' => 'Prayer Warrior', 'role' => 'hp_prayer_team']); $a = hp_insert_request(['kind' => 'PRAYER', 'visibility' => 'TEAM', 'text' => 'Please pray for my mom in the hospital this week.', 'first_name' => 'Sarah', 'contact' => 'sarah@example.test', 'notify_on_pray' => 1, 'contact_me' => 0]); hp_update_request($a, ['approved' => 1]); $b = hp_insert_request(['kind' => 'PRAYER', 'visibility' => 'TEAM', 'text' => 'I start a new job Monday and I am nervous. Pray for peace.', 'first_name' => 'Marc', 'contact' => '', 'notify_on_pray' => 0, 'contact_me' => 0]); hp_update_request($b, ['approved' => 1]); hp_insert_request(['kind' => 'PRAYER', 'visibility' => 'TEAM', 'text' => 'Struggling in my marriage. Please pray for us. (This one is waiting for approval - approve it from the admin.)', 'first_name' => 'Joan', 'contact' => 'joan@example.test', 'notify_on_pray' => 1, 'contact_me' => 0]); hp_insert_request(['kind' => 'HELP', 'visibility' => 'PRIVATE', 'text' => 'We could use groceries this week. Two kids at home.', 'first_name' => 'Eva', 'contact' => '506-555-0101', 'notify_on_pray' => 0, 'contact_me' => 1, 'help_kind' => 'groceries']); hp_insert_request(['kind' => 'PASTOR', 'visibility' => 'PRIVATE', 'text' => 'I would like to talk with a pastor about baptism.', 'first_name' => 'Dan', 'contact' => 'dan@example.test', 'notify_on_pray' => 0, 'contact_me' => 1]); $f = hp_insert_request(['kind' => 'HELP', 'visibility' => 'PRIVATE', 'text' => 'Called the office: needs a ride to a medical appointment Thursday.', 'first_name' => 'Mrs. Thompson', 'contact' => '506-555-0102', 'notify_on_pray' => 0, 'contact_me' => 1, 'source' => 'phone', 'help_kind' => 'visit']); global $wpdb; $t = hp_tables()['requests']; $wpdb->query($wpdb->prepare(\"UPDATE $t SET created_at = %s, due_at = %s WHERE id = %d\", gmdate('Y-m-d H:i:s', time() - 3 * DAY_IN_SECONDS), gmdate('Y-m-d H:i:s', time() - DAY_IN_SECONDS), $f));"
+        }
+    ]
+}

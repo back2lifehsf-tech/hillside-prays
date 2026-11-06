@@ -1,7 +1,10 @@
 {
     "$schema": "https://playground.wordpress.net/blueprint-schema.json",
     "landingPage": "/pray/",
-    "preferredVersions": { "php": "8.2", "wp": "latest" },
+    "preferredVersions": {
+        "php": "8.2",
+        "wp": "latest"
+    },
     "login": true,
     "steps": [
         {
@@ -16,9 +19,11 @@
             "step": "installPlugin",
             "pluginData": {
                 "resource": "url",
-                "url": "https://github-proxy.com/proxy/?repo=back2lifehsf-tech/hillside-prays&release=v0.3.0&asset=hillside-prays-wordpress.zip"
+                "url": "https://playground.wordpress.net/cors-proxy.php?https://github.com/back2lifehsf-tech/hillside-prays/releases/latest/download/hillside-prays-wordpress.zip"
             },
-            "options": { "activate": true }
+            "options": {
+                "activate": true
+            }
         },
         {
             "step": "runPHP",

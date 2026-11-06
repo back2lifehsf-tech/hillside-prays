@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Hillside Prays
  * Description:       Prayer requests for Hillside: ask for prayer, pray for others, and a private view for pastors, Care and the prayer team. Add the [hillside_prays] shortcode to a page.
- * Version:           0.3.0
+ * Version:           0.3.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Hillside Care Ministry
@@ -12,7 +12,7 @@
 
 if (!defined('ABSPATH')) exit;
 
-define('HP_VERSION', '0.3.0');
+define('HP_VERSION', '0.3.1');
 define('HP_FILE', __FILE__);
 define('HP_DIR', plugin_dir_path(__FILE__));
 define('HP_URL', plugin_dir_url(__FILE__));

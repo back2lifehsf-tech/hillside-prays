@@ -37,6 +37,11 @@ function hp_ministries() {
     return array_values(array_unique($list));
 }
 
+/** Only a prayer request gets a visibility choice; everything else is always private. */
+function hp_effective_visibility($kind, $visibility) {
+    return $kind === 'PRAYER' ? $visibility : 'PRIVATE';
+}
+
 /** Respond-by deadline in hours, from settings: urgent 2, prayer/pastor 24, practical help 48. */
 function hp_due_hours($kind) {
     $s = hp_settings();

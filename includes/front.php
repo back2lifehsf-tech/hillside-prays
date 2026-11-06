@@ -123,7 +123,7 @@ function hp_view_ask() {
             <p class="hp-note">Please don't share private details about other people without their permission.</p>
         </div>
 
-        <fieldset class="hp-group">
+        <fieldset class="hp-group" data-hp-vis>
             <legend class="hp-q">3. Who can see this?</legend>
             <?php $i = 0; foreach ($vis as $v => $l): ?>
                 <label class="hp-radio">
@@ -166,7 +166,7 @@ function hp_handle_submit() {
     $contact_me = !empty($_POST['contact_me']) || ($kind !== 'PRAYER');
 
     if (!in_array($kind, HP_KINDS, true)) $back('kind');
-    if ($kind === 'URGENT') $visibility = 'PRIVATE';
+    $visibility = hp_effective_visibility($kind, $visibility);
     $allowed_vis = hp_church_on() ? HP_VIS : ['PRIVATE', 'TEAM'];
     if (!in_array($visibility, $allowed_vis, true)) $back('vis');
     if (mb_strlen($text) < 3) $back('text');

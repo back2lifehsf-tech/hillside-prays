@@ -1,7 +1,7 @@
 === Hillside Prays ===
 Requires at least: 6.0
 Requires PHP: 7.4
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 License: GPLv2 or later
 
 Prayer requests for Hillside: people ask for prayer, choose who can see it, and the church prays for them.
@@ -38,6 +38,10 @@ Every request is also the care log. On wp-admin > Hillside Prays, open "Assign t
 on a request to set the ministry, the owner (a Hillside Care user), a follow-up date and notes.
 Filters: To follow up (new), In progress, Mine (assigned to you), Urgent, Reported, All, Archived.
 Hillside Prays > Summary has the monthly numbers for reports.
+
+== Simpler form (0.3.1) ==
+"Who can see this?" only appears when someone chooses Prayer. A pastor conversation, practical
+help and urgent requests are always private, so the form never asks.
 
 == Who sees what ==
 * Something urgent: always private. Care gets an email. It never shows publicly.

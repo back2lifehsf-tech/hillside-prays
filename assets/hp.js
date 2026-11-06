@@ -26,17 +26,21 @@
     var radios = form.querySelectorAll('.hp-radio');
 
     var helpBox = form.querySelector('[data-hp-help]');
+    var visBox = form.querySelector('[data-hp-vis]');
     function sync() {
       var kind = (form.querySelector('input[name=kind]:checked') || {}).value;
       var urgent = kind === 'URGENT';
+      var prayer = kind === 'PRAYER';
       note.hidden = !urgent;
       if (helpBox) helpBox.hidden = kind !== 'HELP';
-      label.textContent = kind === 'PRAYER' ? '2. What can we pray for?' : '2. How can we help?';
-      if (urgent) form.querySelector('input[name=visibility][value=PRIVATE]').checked = true;
+      label.textContent = prayer ? '2. What can we pray for?' : '2. How can we help?';
+      // Only a prayer request chooses who sees it; everything else is always private.
+      if (visBox) visBox.hidden = !prayer;
+      if (!prayer) form.querySelector('input[name=visibility][value=PRIVATE]').checked = true;
       radios.forEach(function (r) {
         var input = r.querySelector('input');
-        input.disabled = urgent && input.value !== 'PRIVATE';
-        r.classList.toggle('hp-off', input.disabled);
+        input.disabled = false;
+        r.classList.remove('hp-off');
         r.classList.toggle('hp-on', input.checked);
       });
       if (kind !== 'PRAYER') { contactMe.checked = true; contactMe.disabled = true; }

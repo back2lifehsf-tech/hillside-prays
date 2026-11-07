@@ -19,7 +19,7 @@
             "step": "installPlugin",
             "pluginData": {
                 "resource": "url",
-                "url": "https://playground.wordpress.net/cors-proxy.php?https://github.com/back2lifehsf-tech/hillside-prays/releases/latest/download/hillside-prays-wordpress.zip"
+                "url": "https://raw.githubusercontent.com/back2lifehsf-tech/hillside-prays/main/dist/hillside-prays-wordpress.zip"
             },
             "options": {
                 "activate": true
